@@ -175,7 +175,7 @@ public class GUI extends JFrame implements ActionListener {
                 }
             }catch (Exception e) {
                 kolejka = klienci;
-                System.out.println("rhh");
+                System.out.println("ehh");
             }
 
 

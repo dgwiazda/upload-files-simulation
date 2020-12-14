@@ -83,9 +83,11 @@ public class main {
                             //zmniejszenie Count odpowiadajacego za miejsce w kolejce
                             Klient.setCount(Klient.getCount() - 1);
                         }
-                        wolny1.set(true);
                         gui.pozostaloWatek1 = 0;
                         gui.pobranoWatek1 = 0;
+                        gui.oblugiwanyKlientWatek1 = 0;
+                        gui.wagaPlikuWatek1 = 0;
+                        wolny1.set(true);
                     }
                 }
             }
@@ -162,6 +164,8 @@ public class main {
                         }
                         gui.pozostaloWatek2 = 0;
                         gui.pobranoWatek2 = 0;
+                        gui.oblugiwanyKlientWatek2 = 0;
+                        gui.wagaPlikuWatek2 = 0;
                         wolny2.set(true);
                     }
                 }
@@ -240,6 +244,8 @@ public class main {
                         }
                         gui.pozostaloWatek3 = 0;
                         gui.pobranoWatek3 = 0;
+                        gui.oblugiwanyKlientWatek3 = 0;
+                        gui.wagaPlikuWatek3 = 0;
                         wolny3.set(true);
                     }
                 }
@@ -317,6 +323,8 @@ public class main {
                         }
                         gui.pozostaloWatek4 = 0;
                         gui.pobranoWatek4 = 0;
+                        gui.oblugiwanyKlientWatek4 = 0;
+                        gui.wagaPlikuWatek4 = 0;
                         wolny4.set(true);
                     }
                 }
@@ -392,6 +400,8 @@ public class main {
                         }
                         gui.pozostaloWatek5 = 0;
                         gui.pobranoWatek5 = 0;
+                        gui.oblugiwanyKlientWatek5 = 0;
+                        gui.wagaPlikuWatek5 = 0;
                     }
                 }
             }
