@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class main {
@@ -19,20 +21,21 @@ public class main {
             int secondsToSleep;
             int miejsceObslugiwanegoKlienta;
             Klient oblugiwanyKlient;
+            List<Klient> klienci = gui.getKlienci();
             while (true) {
                 System.out.print("");
-                if (!gui.klienci.isEmpty()) {
+                if (!klienci.isEmpty()) {
 
-                    Collections.sort(gui.klienci);
-                    oblugiwanyKlient =  gui.klienci.get(0);
+                    Collections.sort(klienci);
+                    oblugiwanyKlient = klienci.get(0);
 
                     if (oblugiwanyKlient.getIloscPlikow() > 0) {
 
                         miejsceObslugiwanegoKlienta = oblugiwanyKlient.getMiejsceWKolejce();
-                        gui.oblugiwanyKlientWatek1 = miejsceObslugiwanegoKlienta;
+                        gui.setOblugiwanyKlientWatek1(miejsceObslugiwanegoKlienta);
                         losowaCiezkoscPliku = ((int) (Math.random()
                                 * (maxCiezkoscPliku - minCiezkoscPliku + 1) + minCiezkoscPliku));
-                        gui.wagaPlikuWatek1 = losowaCiezkoscPliku;
+                        gui.setWagaPlikuWatek1(losowaCiezkoscPliku);
                         //ilosc plikow --
                         oblugiwanyKlient.setIloscPlikow(oblugiwanyKlient.getIloscPlikow() - 1);
                         //zajęte wątki ++
@@ -49,12 +52,13 @@ public class main {
 
                         //czas wrzucania pliku
                         secondsToSleep = losowaCiezkoscPliku / predkoscPobierania + 1;
-                        gui.pozostaloWatek1 = secondsToSleep;
+
+                        gui.setPozostaloWatek1(secondsToSleep);
                         try {
                             for (int i = 0; i < secondsToSleep ; i++) {
                                 Thread.sleep(1000);
-                                gui.pobranoWatek1 = gui.pobranoWatek1 + 3;
-                                gui.pozostaloWatek1 = gui.pozostaloWatek1 - 1;
+                                gui.setPobranoWatek1(gui.getPobranoWatek1() + 3);
+                                gui.setPozostaloWatek1(gui.getPozostaloWatek1() - 1);
                             }
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
@@ -71,7 +75,7 @@ public class main {
 
 
                         if (oblugiwanyKlient.getIloscPlikow() == 0 && oblugiwanyKlient.getZajeteWatki() == 0) {
-                            for (Klient klient : gui.klienci) {
+                            for (Klient klient : klienci) {
                                 //miejsce w kolejce--
                                 if(klient.getMiejsceWKolejce() > oblugiwanyKlient.getMiejsceWKolejce()) {
                                     klient.setMiejsceWKolejce(klient.getMiejsceWKolejce() - 1);
@@ -79,14 +83,14 @@ public class main {
                                 }
                             }
                             // usuwamy klienta bez plikow
-                            gui.klienci.remove(oblugiwanyKlient);
+                            klienci.remove(oblugiwanyKlient);
                             //zmniejszenie Count odpowiadajacego za miejsce w kolejce
                             Klient.setCount(Klient.getCount() - 1);
                         }
-                        gui.pozostaloWatek1 = 0;
-                        gui.pobranoWatek1 = 0;
-                        gui.oblugiwanyKlientWatek1 = 0;
-                        gui.wagaPlikuWatek1 = 0;
+                        gui.setPozostaloWatek1(0);
+                        gui.setPobranoWatek1(0);
+                        gui.setOblugiwanyKlientWatek1(0);
+                        gui.setWagaPlikuWatek1(0);
                         wolny1.set(true);
                     }
                 }
@@ -98,20 +102,21 @@ public class main {
             int secondsToSleep;
             int miejsceObslugiwanegoKlienta;
             Klient oblugiwanyKlient;
+            List<Klient> klienci = gui.getKlienci();
             while (true) {
                 System.out.print("");
-                if (!gui.klienci.isEmpty() && !wolny1.get()) {
+                if (!klienci.isEmpty() && !wolny1.get()) {
 
-                    Collections.sort(gui.klienci);
-                    oblugiwanyKlient =  gui.klienci.get(0);
+                    Collections.sort(klienci);
+                    oblugiwanyKlient =  klienci.get(0);
 
                     if (oblugiwanyKlient.getIloscPlikow() > 0) {
 
                         miejsceObslugiwanegoKlienta = oblugiwanyKlient.getMiejsceWKolejce();
-                        gui.oblugiwanyKlientWatek2 = miejsceObslugiwanegoKlienta;
+                        gui.setOblugiwanyKlientWatek2(miejsceObslugiwanegoKlienta);
                         losowaCiezkoscPliku = ((int) (Math.random()
                                 * (maxCiezkoscPliku - minCiezkoscPliku + 1) + minCiezkoscPliku));
-                        gui.wagaPlikuWatek2 = losowaCiezkoscPliku;
+                        gui.setWagaPlikuWatek2(losowaCiezkoscPliku);
                         //ilosc plikow --
                         oblugiwanyKlient.setIloscPlikow(oblugiwanyKlient.getIloscPlikow() - 1);
                         //zajęte wątki ++
@@ -128,12 +133,12 @@ public class main {
 
                         //czas wrzucania pliku
                         secondsToSleep = losowaCiezkoscPliku / predkoscPobierania + 1;
-                        gui.pozostaloWatek2 = secondsToSleep;
+                        gui.setPozostaloWatek2(secondsToSleep);
                         try {
                             for (int i = 0; i < secondsToSleep ; i++) {
                                 Thread.sleep(1000);
-                                gui.pobranoWatek2 = gui.pobranoWatek2 + 3;
-                                gui.pozostaloWatek2 = gui.pozostaloWatek2 - 1;
+                                gui.setPobranoWatek2(gui.getPobranoWatek2() + 3);
+                                gui.setPozostaloWatek2(gui.getPozostaloWatek2() - 1);
                             }
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
@@ -150,7 +155,7 @@ public class main {
 
 
                         if (oblugiwanyKlient.getIloscPlikow() == 0 && oblugiwanyKlient.getZajeteWatki() == 0) {
-                            for (Klient klient : gui.klienci) {
+                            for (Klient klient : klienci) {
                                 //miejsce w kolejce--
                                 if(klient.getMiejsceWKolejce() > oblugiwanyKlient.getMiejsceWKolejce()) {
                                     klient.setMiejsceWKolejce(klient.getMiejsceWKolejce() - 1);
@@ -158,14 +163,14 @@ public class main {
                                 }
                             }
                             // usuwamy klienta bez plikow
-                            gui.klienci.remove(oblugiwanyKlient);
+                            klienci.remove(oblugiwanyKlient);
                             //zmniejszenie Count odpowiadajacego za miejsce w kolejce
                             Klient.setCount(Klient.getCount() - 1);
                         }
-                        gui.pozostaloWatek2 = 0;
-                        gui.pobranoWatek2 = 0;
-                        gui.oblugiwanyKlientWatek2 = 0;
-                        gui.wagaPlikuWatek2 = 0;
+                        gui.setPozostaloWatek2(0);
+                        gui.setPobranoWatek2(0);
+                        gui.setOblugiwanyKlientWatek2(0);
+                        gui.setWagaPlikuWatek2(0);
                         wolny2.set(true);
                     }
                 }
@@ -177,20 +182,21 @@ public class main {
             int secondsToSleep;
             int miejsceObslugiwanegoKlienta;
             Klient oblugiwanyKlient;
+            List<Klient> klienci = gui.getKlienci();
             while (true) {
                 System.out.print("");
-                if (!gui.klienci.isEmpty() && !wolny1.get() && !wolny2.get()) {
+                if (!klienci.isEmpty() && !wolny1.get() && !wolny2.get()) {
 
-                    Collections.sort(gui.klienci);
-                    oblugiwanyKlient = gui.klienci.get(0);
+                    Collections.sort(klienci);
+                    oblugiwanyKlient = klienci.get(0);
 
                     if (oblugiwanyKlient.getIloscPlikow() > 0) {
 
                         miejsceObslugiwanegoKlienta = oblugiwanyKlient.getMiejsceWKolejce();
-                        gui.oblugiwanyKlientWatek3 = miejsceObslugiwanegoKlienta;
+                        gui.setOblugiwanyKlientWatek3(miejsceObslugiwanegoKlienta);
                         losowaCiezkoscPliku = ((int) (Math.random()
                                 * (maxCiezkoscPliku - minCiezkoscPliku + 1) + minCiezkoscPliku));
-                        gui.wagaPlikuWatek3 = losowaCiezkoscPliku;
+                        gui.setWagaPlikuWatek3(losowaCiezkoscPliku);
                         //ilosc plikow --
                         oblugiwanyKlient.setIloscPlikow(oblugiwanyKlient.getIloscPlikow() - 1);
                         //zajęte wątki ++
@@ -207,12 +213,12 @@ public class main {
 
                         //czas wrzucania pliku
                         secondsToSleep = losowaCiezkoscPliku / predkoscPobierania + 1;
-                        gui.pozostaloWatek3 = secondsToSleep;
+                        gui.setPozostaloWatek3(secondsToSleep);
                         try {
                             for (int i = 0; i < secondsToSleep ; i++) {
                                 Thread.sleep(1000);
-                                gui.pobranoWatek3 = gui.pobranoWatek3 + 3;
-                                gui.pozostaloWatek3 = gui.pozostaloWatek3 - 1;
+                                gui.setPobranoWatek3(gui.getPobranoWatek3() + 3);
+                                gui.setPozostaloWatek3(gui.getPozostaloWatek3() - 1);
                             }
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
@@ -230,7 +236,7 @@ public class main {
 
 
                         if (oblugiwanyKlient.getIloscPlikow() == 0 && oblugiwanyKlient.getZajeteWatki() == 0) {
-                            for (Klient klient : gui.klienci) {
+                            for (Klient klient : klienci) {
                                 //miejsce w kolejce--
                                 if(klient.getMiejsceWKolejce() > oblugiwanyKlient.getMiejsceWKolejce()) {
                                     klient.setMiejsceWKolejce(klient.getMiejsceWKolejce() - 1);
@@ -238,14 +244,14 @@ public class main {
                                 }
                             }
                             // usuwamy klienta bez plikow
-                            gui.klienci.remove(oblugiwanyKlient);
+                            klienci.remove(oblugiwanyKlient);
                             //zmniejszenie Count odpowiadajacego za miejsce w kolejce
                             Klient.setCount(Klient.getCount() - 1);
                         }
-                        gui.pozostaloWatek3 = 0;
-                        gui.pobranoWatek3 = 0;
-                        gui.oblugiwanyKlientWatek3 = 0;
-                        gui.wagaPlikuWatek3 = 0;
+                        gui.setPozostaloWatek3(0);
+                        gui.setPobranoWatek3(0);
+                        gui.setOblugiwanyKlientWatek3(0);
+                        gui.setWagaPlikuWatek3(0);
                         wolny3.set(true);
                     }
                 }
@@ -257,20 +263,21 @@ public class main {
             int secondsToSleep;
             int miejsceObslugiwanegoKlienta;
             Klient oblugiwanyKlient;
+            List<Klient> klienci = gui.getKlienci();
             while (true) {
                 System.out.print("");
-                if (!gui.klienci.isEmpty() && !wolny1.get() && !wolny2.get() && !wolny3.get()) {
+                if (!klienci.isEmpty() && !wolny1.get() && !wolny2.get() && !wolny3.get()) {
 
-                    Collections.sort(gui.klienci);
-                    oblugiwanyKlient = gui.klienci.get(0);
+                    Collections.sort(klienci);
+                    oblugiwanyKlient = klienci.get(0);
 
                     if (oblugiwanyKlient.getIloscPlikow() > 0) {
 
                         miejsceObslugiwanegoKlienta = oblugiwanyKlient.getMiejsceWKolejce();
-                        gui.oblugiwanyKlientWatek4 = miejsceObslugiwanegoKlienta;
+                        gui.setOblugiwanyKlientWatek4(miejsceObslugiwanegoKlienta);
                         losowaCiezkoscPliku = ((int) (Math.random()
                                 * (maxCiezkoscPliku - minCiezkoscPliku + 1) + minCiezkoscPliku));
-                        gui.wagaPlikuWatek4 = losowaCiezkoscPliku;
+                        gui.setWagaPlikuWatek4(losowaCiezkoscPliku);
                         //ilosc plikow --
                         oblugiwanyKlient.setIloscPlikow(oblugiwanyKlient.getIloscPlikow() - 1);
                         //zajęte wątki ++
@@ -287,12 +294,12 @@ public class main {
 
                         //czas wrzucania pliku
                         secondsToSleep = losowaCiezkoscPliku / predkoscPobierania + 1;
-                        gui.pozostaloWatek4 = secondsToSleep;
+                        gui.setPozostaloWatek4(secondsToSleep);
                         try {
                             for (int i = 0; i < secondsToSleep ; i++) {
                                 Thread.sleep(1000);
-                                gui.pobranoWatek4 = gui.pobranoWatek4 + 3;
-                                gui.pozostaloWatek4 = gui.pozostaloWatek4 - 1;
+                                gui.setPobranoWatek4(gui.getPobranoWatek4() + 3);
+                                gui.setPozostaloWatek4(gui.getPozostaloWatek4() - 1);
                             }
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
@@ -309,7 +316,7 @@ public class main {
                         oblugiwanyKlient.setWaga(oblugiwanyKlient.getWagaWgrywanychPlikow());
 
                         if (oblugiwanyKlient.getIloscPlikow() == 0 && oblugiwanyKlient.getZajeteWatki() == 0) {
-                            for (Klient klient : gui.klienci) {
+                            for (Klient klient : klienci) {
                                 //miejsce w kolejce--
                                 if(klient.getMiejsceWKolejce() > oblugiwanyKlient.getMiejsceWKolejce()) {
                                     klient.setMiejsceWKolejce(klient.getMiejsceWKolejce() - 1);
@@ -317,14 +324,14 @@ public class main {
                                 }
                             }
                             // usuwamy klienta bez plikow
-                            gui.klienci.remove(oblugiwanyKlient);
+                            klienci.remove(oblugiwanyKlient);
                             //zmniejszenie Count odpowiadajacego za miejsce w kolejce
                             Klient.setCount(Klient.getCount() - 1);
                         }
-                        gui.pozostaloWatek4 = 0;
-                        gui.pobranoWatek4 = 0;
-                        gui.oblugiwanyKlientWatek4 = 0;
-                        gui.wagaPlikuWatek4 = 0;
+                        gui.setPozostaloWatek4(0);
+                        gui.setPobranoWatek4(0);
+                        gui.setOblugiwanyKlientWatek4(0);
+                        gui.setWagaPlikuWatek4(0);
                         wolny4.set(true);
                     }
                 }
@@ -335,20 +342,21 @@ public class main {
             int secondsToSleep;
             int miejsceObslugiwanegoKlienta;
             Klient oblugiwanyKlient;
+            List<Klient> klienci = gui.getKlienci();
             while (true) {
                 System.out.print("");
-                if (!gui.klienci.isEmpty() && !wolny1.get() && !wolny2.get() && !wolny3.get() && !wolny4.get()) {
+                if (!klienci.isEmpty() && !wolny1.get() && !wolny2.get() && !wolny3.get() && !wolny4.get()) {
 
-                    Collections.sort(gui.klienci);
-                    oblugiwanyKlient = gui.klienci.get(0);
+                    Collections.sort(klienci);
+                    oblugiwanyKlient = klienci.get(0);
 
                     if (oblugiwanyKlient.getIloscPlikow() > 0) {
 
                         miejsceObslugiwanegoKlienta = oblugiwanyKlient.getMiejsceWKolejce();
-                        gui.oblugiwanyKlientWatek5 = miejsceObslugiwanegoKlienta;
+                        gui.setOblugiwanyKlientWatek5(miejsceObslugiwanegoKlienta);
                         losowaCiezkoscPliku = ((int) (Math.random()
                                 * (maxCiezkoscPliku - minCiezkoscPliku + 1) + minCiezkoscPliku));
-                        gui.wagaPlikuWatek5 = losowaCiezkoscPliku;
+                        gui.setWagaPlikuWatek5(losowaCiezkoscPliku);
                         //ilosc plikow --
                         oblugiwanyKlient.setIloscPlikow(oblugiwanyKlient.getIloscPlikow() - 1);
                         //zajęte wątki ++
@@ -363,12 +371,12 @@ public class main {
 
                         //czas wrzucania pliku
                         secondsToSleep = losowaCiezkoscPliku / predkoscPobierania + 1;
-                        gui.pozostaloWatek5 = secondsToSleep;
+                        gui.setPozostaloWatek5(secondsToSleep);
                         try {
                             for (int i = 0; i < secondsToSleep ; i++) {
                                 Thread.sleep(1000);
-                                gui.pobranoWatek5 = gui.pobranoWatek5 + 3;
-                                gui.pozostaloWatek5 = gui.pozostaloWatek5 - 1;
+                                gui.setPobranoWatek5(gui.getPobranoWatek5() + 3);
+                                gui.setPozostaloWatek5(gui.getPozostaloWatek5() - 1);
                             }
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
@@ -386,7 +394,7 @@ public class main {
 
 
                         if (oblugiwanyKlient.getIloscPlikow() == 0 && oblugiwanyKlient.getZajeteWatki() == 0) {
-                            for (Klient klient : gui.klienci) {
+                            for (Klient klient : klienci) {
                                 //miejsce w kolejce--
                                 if(klient.getMiejsceWKolejce() > oblugiwanyKlient.getMiejsceWKolejce()) {
                                     klient.setMiejsceWKolejce(klient.getMiejsceWKolejce() - 1);
@@ -394,14 +402,14 @@ public class main {
                                 }
                             }
                             // usuwamy klienta bez plikow
-                            gui.klienci.remove(oblugiwanyKlient);
+                            klienci.remove(oblugiwanyKlient);
                             //zmniejszenie Count odpowiadajacego za miejsce w kolejce
                             Klient.setCount(Klient.getCount() - 1);
                         }
-                        gui.pozostaloWatek5 = 0;
-                        gui.pobranoWatek5 = 0;
-                        gui.oblugiwanyKlientWatek5 = 0;
-                        gui.wagaPlikuWatek5 = 0;
+                        gui.setPozostaloWatek5(0);
+                        gui.setPobranoWatek5(0);
+                        gui.setOblugiwanyKlientWatek5(0);
+                        gui.setWagaPlikuWatek5(0);
                     }
                 }
             }

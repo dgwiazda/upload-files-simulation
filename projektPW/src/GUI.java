@@ -183,29 +183,29 @@ public class GUI extends JFrame implements ActionListener {
     };
     Timer timer = new Timer(1000, taskPerformer);
 
-    public List<Klient> klienci = new ArrayList<>();
+    private List<Klient> klienci = new ArrayList<>();
     private List<Klient> kolejka = new ArrayList<>();
 
-    public int oblugiwanyKlientWatek1;
-    public int oblugiwanyKlientWatek2;
-    public int oblugiwanyKlientWatek3;
-    public int oblugiwanyKlientWatek4;
-    public int oblugiwanyKlientWatek5;
-    public int wagaPlikuWatek1;
-    public int wagaPlikuWatek2;
-    public int wagaPlikuWatek3;
-    public int wagaPlikuWatek4;
-    public int wagaPlikuWatek5;
-    public int pobranoWatek1;
-    public int pobranoWatek2;
-    public int pobranoWatek3;
-    public int pobranoWatek4;
-    public int pobranoWatek5;
-    public int pozostaloWatek1;
-    public int pozostaloWatek2;
-    public int pozostaloWatek3;
-    public int pozostaloWatek4;
-    public int pozostaloWatek5;
+    private int oblugiwanyKlientWatek1;
+    private int oblugiwanyKlientWatek2;
+    private int oblugiwanyKlientWatek3;
+    private int oblugiwanyKlientWatek4;
+    private int oblugiwanyKlientWatek5;
+    private int wagaPlikuWatek1;
+    private int wagaPlikuWatek2;
+    private int wagaPlikuWatek3;
+    private int wagaPlikuWatek4;
+    private int wagaPlikuWatek5;
+    private int pobranoWatek1;
+    private int pobranoWatek2;
+    private int pobranoWatek3;
+    private int pobranoWatek4;
+    private int pobranoWatek5;
+    private int pozostaloWatek1;
+    private int pozostaloWatek2;
+    private int pozostaloWatek3;
+    private int pozostaloWatek4;
+    private int pozostaloWatek5;
     private int iloscKlientowWKolejce;
     private Klient pierwszy;
     private Klient drugi;
@@ -567,6 +567,170 @@ public class GUI extends JFrame implements ActionListener {
             System.out.println(klienci.get(Klient.getCount() - 1));
             iloscKlientowWKolejce = Klient.getCount();
         }
+    }
+
+    public List<Klient> getKlienci() {
+        return klienci;
+    }
+
+    public int getOblugiwanyKlientWatek1() {
+        return oblugiwanyKlientWatek1;
+    }
+
+    public void setOblugiwanyKlientWatek1(int oblugiwanyKlientWatek1) {
+        this.oblugiwanyKlientWatek1 = oblugiwanyKlientWatek1;
+    }
+
+    public int getOblugiwanyKlientWatek2() {
+        return oblugiwanyKlientWatek2;
+    }
+
+    public void setOblugiwanyKlientWatek2(int oblugiwanyKlientWatek2) {
+        this.oblugiwanyKlientWatek2 = oblugiwanyKlientWatek2;
+    }
+
+    public int getOblugiwanyKlientWatek3() {
+        return oblugiwanyKlientWatek3;
+    }
+
+    public void setOblugiwanyKlientWatek3(int oblugiwanyKlientWatek3) {
+        this.oblugiwanyKlientWatek3 = oblugiwanyKlientWatek3;
+    }
+
+    public int getOblugiwanyKlientWatek4() {
+        return oblugiwanyKlientWatek4;
+    }
+
+    public void setOblugiwanyKlientWatek4(int oblugiwanyKlientWatek4) {
+        this.oblugiwanyKlientWatek4 = oblugiwanyKlientWatek4;
+    }
+
+    public int getOblugiwanyKlientWatek5() {
+        return oblugiwanyKlientWatek5;
+    }
+
+    public void setOblugiwanyKlientWatek5(int oblugiwanyKlientWatek5) {
+        this.oblugiwanyKlientWatek5 = oblugiwanyKlientWatek5;
+    }
+
+    public int getWagaPlikuWatek1() {
+        return wagaPlikuWatek1;
+    }
+
+    public void setWagaPlikuWatek1(int wagaPlikuWatek1) {
+        this.wagaPlikuWatek1 = wagaPlikuWatek1;
+    }
+
+    public int getWagaPlikuWatek2() {
+        return wagaPlikuWatek2;
+    }
+
+    public void setWagaPlikuWatek2(int wagaPlikuWatek2) {
+        this.wagaPlikuWatek2 = wagaPlikuWatek2;
+    }
+
+    public int getWagaPlikuWatek3() {
+        return wagaPlikuWatek3;
+    }
+
+    public void setWagaPlikuWatek3(int wagaPlikuWatek3) {
+        this.wagaPlikuWatek3 = wagaPlikuWatek3;
+    }
+
+    public int getWagaPlikuWatek4() {
+        return wagaPlikuWatek4;
+    }
+
+    public void setWagaPlikuWatek4(int wagaPlikuWatek4) {
+        this.wagaPlikuWatek4 = wagaPlikuWatek4;
+    }
+
+    public int getWagaPlikuWatek5() {
+        return wagaPlikuWatek5;
+    }
+
+    public void setWagaPlikuWatek5(int wagaPlikuWatek5) {
+        this.wagaPlikuWatek5 = wagaPlikuWatek5;
+    }
+
+    public int getPobranoWatek1() {
+        return pobranoWatek1;
+    }
+
+    public void setPobranoWatek1(int pobranoWatek1) {
+        this.pobranoWatek1 = pobranoWatek1;
+    }
+
+    public int getPobranoWatek2() {
+        return pobranoWatek2;
+    }
+
+    public void setPobranoWatek2(int pobranoWatek2) {
+        this.pobranoWatek2 = pobranoWatek2;
+    }
+
+    public int getPobranoWatek3() {
+        return pobranoWatek3;
+    }
+
+    public void setPobranoWatek3(int pobranoWatek3) {
+        this.pobranoWatek3 = pobranoWatek3;
+    }
+
+    public int getPobranoWatek4() {
+        return pobranoWatek4;
+    }
+
+    public void setPobranoWatek4(int pobranoWatek4) {
+        this.pobranoWatek4 = pobranoWatek4;
+    }
+
+    public int getPobranoWatek5() {
+        return pobranoWatek5;
+    }
+
+    public void setPobranoWatek5(int pobranoWatek5) {
+        this.pobranoWatek5 = pobranoWatek5;
+    }
+
+    public int getPozostaloWatek1() {
+        return pozostaloWatek1;
+    }
+
+    public void setPozostaloWatek1(int pozostaloWatek1) {
+        this.pozostaloWatek1 = pozostaloWatek1;
+    }
+
+    public int getPozostaloWatek2() {
+        return pozostaloWatek2;
+    }
+
+    public void setPozostaloWatek2(int pozostaloWatek2) {
+        this.pozostaloWatek2 = pozostaloWatek2;
+    }
+
+    public int getPozostaloWatek3() {
+        return pozostaloWatek3;
+    }
+
+    public void setPozostaloWatek3(int pozostaloWatek3) {
+        this.pozostaloWatek3 = pozostaloWatek3;
+    }
+
+    public int getPozostaloWatek4() {
+        return pozostaloWatek4;
+    }
+
+    public void setPozostaloWatek4(int pozostaloWatek4) {
+        this.pozostaloWatek4 = pozostaloWatek4;
+    }
+
+    public int getPozostaloWatek5() {
+        return pozostaloWatek5;
+    }
+
+    public void setPozostaloWatek5(int pozostaloWatek5) {
+        this.pozostaloWatek5 = pozostaloWatek5;
     }
 }
 
