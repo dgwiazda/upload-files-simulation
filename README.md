@@ -21,5 +21,4 @@ To run this project:
 * just run the "UploadFilesSimulation/projektPW/src/main"
 
 ## Simulation
-![alt text](https://github.com/dgwiazda/upload-files-simulation/tree/master/projektPW/pictures/Simulation.PNG?raw=true)
-s
+![alt text](https://github.com/dgwiazda/upload-files-simulation/blob/master/pictures/Simulation.PNG?raw=true)
