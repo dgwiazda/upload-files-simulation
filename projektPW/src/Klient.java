@@ -1,5 +1,3 @@
-import java.util.Collection;
-
 public class Klient implements Comparable<Klient> {
     private static int count=0;
     private static int liczebnosc=0;

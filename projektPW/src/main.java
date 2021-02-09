@@ -52,7 +52,6 @@ public class main {
 
                         //czas wrzucania pliku
                         secondsToSleep = losowaCiezkoscPliku / predkoscPobierania + 1;
-
                         gui.setPozostaloWatek1(secondsToSleep);
                         try {
                             for (int i = 0; i < secondsToSleep ; i++) {
